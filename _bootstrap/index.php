@@ -85,6 +85,13 @@ if (!createObject('modSnippet', array(
 ), 'name', false)) {
     echo "Error creating trInitialize snippet.\n";
 }
+if (!createObject('modSnippet', array(
+    'name' => 'trGetLanguageSets',
+    'static' => true,
+    'static_file' => $componentPath.'/core/components/translate/elements/snippets/trgetlanguagesets.snippet.php',
+), 'name', false)) {
+    echo "Error creating trInitialize snippet.\n";
+}
 
 /*if (!createObject('modAction', array(
     'namespace' => 'translate',
