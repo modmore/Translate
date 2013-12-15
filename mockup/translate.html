@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translate Example</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript">
+        // Google WebFonts
+        WebFontConfig = {
+            google: { families: [ 'Maven+Pro:400,500,700:latin' ] }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                    '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+</head>
+<body>
+
+<div id="container">
+    <header>
+        <div class="stats">
+            <p>
+                Translated: <span class="translated">0</span>/<span class="total">0</span>
+                &bull;
+                Skipped: <span class="skipped">0</span>
+                &bull;
+                Credits: <span class="credits">0</span>
+            </p>
+
+            <div class="bar">
+                <div class="percentage" style="width: 0;"></div>
+            </div>
+        </div>
+
+        <h1>
+            <a href="#" class="namespace">redactor</a> /
+            <a href="#" class="language">nl</a> /
+            <a href="#" class="topic">default</a>
+        </h1>
+    </header>
+
+
+    <div id="main">
+        <h3>Loading translates, just a moment...</h3>
+    </div>
+</div>
+
+<script type="text/javascript" src="javascripts/libs/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="javascripts/libs/underscore-min.js"></script>
+<script type="text/javascript" src="javascripts/libs/backbone-min.js"></script>
+<script type="text/javascript" src="javascripts/translate.js"></script>
+
+
+<script type="text/template" id="entry-template">
+    <h3 class="lexicon_key"><%= key %></h3>
+
+    <h2 class="source_value"><%= original %></h2>
+
+    <input type="text" class="translation" value="<%= translation %>">
+
+    <footer>
+        <ul class="buttons">
+            <li>
+                <a href="javascript:void();" class="skip">Skip</a>
+            </li>
+            <li>
+                <a href="javascript:void();" class="save">Save</a>
+            </li>
+            <li>
+                <a href="javascript:void();" class="review">Save with Review</a>
+            </li>
+        </ul>
+    </footer>
+</script>
+<script type="text/template" id="completed-template">
+    <div id="thanks">
+        <h2>You are awesome!</h2>
+        <p>There are no more <%= what %> in this lexicon. If you're up for a bit more, here are a few options:</p>
+
+        <ul>
+            <li class="modeTranslate"><a href="javascript:void();">Translate <%= translateable %> new or missing entries</a></li>
+            <li class="modeSkipped"><a href="javascript:void();">Translate <%= skipped %> skipped entries</a></li>
+            <li class="modeFlagged"><a href="javascript:void();">Review <%= flagged %> flagged entries</a></li>
+            <li><a href="../">Translate a different topic or package</a></li>
+        </ul>
+    </div>
+</script>
+</body>
+</html>
