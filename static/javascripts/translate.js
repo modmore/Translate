@@ -1,4 +1,22 @@
 $(function () {
+    Backbone.sync = function(method, model, options) {
+        var actions = model.actions;
+
+        // Default JSON-request options.
+        var params = {
+            type: 'POST',
+            dataType: 'json',
+            data: options.attrs || model.attributes || {}
+        };
+
+        params.url = '' + TranslateConfig.baseUrl + actions[method] + '?namespace=' + TranslateConfig.namespace + '&topic=' + TranslateConfig.topic + '&language=' + TranslateConfig.language;
+
+        // Make the request, allowing the user to override any Ajax options.
+        var xhr = options.xhr = Backbone.ajax(_.extend(params, options));
+        model.trigger('request', model, xhr, options);
+        return xhr;
+    };
+
     var Entry = Backbone.Model.extend({
         defaults: {
             id: 0,
@@ -18,7 +36,11 @@ $(function () {
         model: Entry,
         comparator: 'order',
 
-        url: '../mock/collection.json',
+        actions: {
+            read: 'gettranslations',
+            update: 'update',
+            patch: 'update'
+        },
 
         flagged: function() {
             return this.where({flagged: true});

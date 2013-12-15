@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /Translate/api/
+
+RewriteRule ^(.*)$ api.php?action=$1 [L,QSA]

@@ -1,3 +1,4 @@
 .idea/
 config.core.php
 .sass-cache/
+.htaccess
