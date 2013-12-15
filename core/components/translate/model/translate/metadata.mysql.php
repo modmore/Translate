@@ -7,6 +7,7 @@ $xpdo_meta_map = array (
     1 => 'trNamespace',
     2 => 'trTopic',
     3 => 'trLanguage',
-    4 => 'trMaintainer',
+    4 => 'trLanguageSet',
+    5 => 'trMaintainer',
   ),
 );

@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model package="translate" baseClass="xPDOSimpleObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
     <object class="trEntry" table="translate_entry">
-        <field key="namespace" dbtype="varchar" precision="250" phptype="string" null="false" />
-        <field key="topic" dbtype="varchar" precision="50" phptype="string" null="false" />
-        <field key="language" dbtype="varchar" precision="5" phptype="string" null="false" />
-
-        <field key="namespace" dbtype="int" precision="11" phptype="integer" null="false" attributes="unsigned" />
-        <field key="topic" dbtype="int" precision="11" phptype="integer" null="false" attributes="unsigned" />
-        <field key="language" dbtype="int" precision="11" phptype="integer" null="false" attributes="unsigned" />
+        <field key="languageset" dbtype="int" precision="11" phptype="integer" null="false" attributes="unsigned" />
 
         <field key="key" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
         <field key="translation" dbtype="text" phptype="string" null="false" default="" />
 
-        <field key="flagged" dbtype="tinyint" precision="1" phptype="bool" null="false" default="1" />
-        <field key="skipped" dbtype="tinyint" precision="1" phptype="bool" null="false" default="1" />
-        <field key="translated" dbtype="tinyint" precision="1" phptype="bool" null="false" default="1" />
+        <field key="flagged" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0" />
+        <field key="skipped" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0" />
+        <field key="translated" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0" />
 
         <field key="flaggedby" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
         <field key="skippedby" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
@@ -50,6 +44,21 @@
 
         <composite alias="Entries" class="trEntry" cardinality="many" foreign="language" local="id" owner="local" />
         <composite alias="Maintainers" class="trMaintainer" cardinality="many" foreign="language" local="id" owner="local" />
+    </object>
+
+    <object class="trLanguageSet" table="translate_languageset">
+        <field key="namespace" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
+        <field key="topic" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
+        <field key="language" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
+
+        <field key="createdby" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
+        <field key="createdon" dbtype="int" precision="15" phptype="integer" null="true" attributes="unsigned" />
+
+        <aggregate alias="Namespace" class="trNamespace" cardinality="one" foreign="id" local="namespace" owner="foreign" />
+        <aggregate alias="Topic" class="trTopic" cardinality="one" foreign="id" local="topic" owner="foreign" />
+        <aggregate alias="Language" class="trLanguage" cardinality="one" foreign="id" local="language" owner="foreign" />
+
+        <composite alias="Entries" class="trEntry" cardinality="many" foreign="languageset" local="id" owner="local" />
     </object>
 
     <object class="trMaintainer" table="translate_maintainer">

@@ -20,21 +20,24 @@ $(function () {
     var Entry = Backbone.Model.extend({
         defaults: {
             id: 0,
-            namespace: '',
-            topic: '',
-            language: '',
+            languageset: '',
             key: '',
             original: '',
             translation: '',
             flagged: false,
             skipped: false,
-            translated: false,
-            order: 0
+            translated: false
+        },
+
+        actions: {
+            read: 'gettranslations',
+            update: 'update',
+            patch: 'update'
         }
     });
     var EntryList = Backbone.Collection.extend({
         model: Entry,
-        comparator: 'order',
+        comparator: 'id',
 
         actions: {
             read: 'gettranslations',

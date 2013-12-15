@@ -29,6 +29,7 @@ $rest = new TranslateRestController($modx, array());
 $controller = $rest->getController();
 
 if ($controller instanceof TranslateRestController) {
+    header('Content-Type: application/json');
     echo $controller->process();
 } else {
     error_log('Controller error for: ' . print_r($_REQUEST, true) . ' | Error: ' . $controller);

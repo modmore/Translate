@@ -20,7 +20,15 @@ class TranslateRestController {
      */
     public $translate;
 
-    public $user = 0;
+    /** @var trNamespace */
+    public $namespace;
+    /** @var trTopic */
+    public $topic;
+    /** @var trLanguage */
+    public $language;
+
+    /** @var null|modUser */
+    public $user = null;
 
     /**
      * Constructs a TranslateRestController object.
@@ -137,8 +145,13 @@ class TranslateRestController {
             /** @var TranslateRestController $c */
             $c = new $className($this->modx, $options);
             if (!$c->authUser()) {
-                return 'Error authenticating your request. Please review https://www.modmore.com/about/package-provider/ for more information and usage instructions.';
+                return 'No active session found, please make sure you are logged in and then try again.';
             }
+
+            if (!$c->getNamespace()) return 'Invalid namespace';
+            if (!$c->getTopic()) return 'Invalid topic';
+            if (!$c->getLanguage()) return 'Invalid language';
+
             $c->logRequest();
             $c->initialize();
         } else {
@@ -232,5 +245,41 @@ class TranslateRestController {
         $this->modx->log(modX::LOG_LEVEL_INFO, $msg);
         $this->modx->setLogLevel($level);
         $this->modx->setLogTarget($target);
+    }
+
+    /**
+     * @return bool
+     */
+    private function getNamespace()
+    {
+        $ns = $this->modx->getObject('trNamespace', array('name' => (string)$_REQUEST['namespace']));
+        if (!$ns) return false;
+
+        $this->namespace = $ns;
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    private function getTopic()
+    {
+        $topic = $this->modx->getObject('trTopic', array('topic' => (string)$_REQUEST['topic'], 'namespace' => $this->namespace->get('id')));
+        if (!$topic) return false;
+
+        $this->topic = $topic;
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    private function getLanguage()
+    {
+        $language = $this->modx->getObject('trLanguage', array('code' => (string)$_REQUEST['language']));
+        if (!$language) return false;
+
+        $this->language = $language;
+        return true;
     }
 }

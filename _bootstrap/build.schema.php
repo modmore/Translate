@@ -130,6 +130,7 @@ $modx->addPackage(PKG_NAME_LOWER, $sources['model']);
 $objects = array(
     'trEntry',
     'trLanguage',
+    'trLanguageSet',
     'trMaintainer',
     'trNamespace',
     'trTopic',

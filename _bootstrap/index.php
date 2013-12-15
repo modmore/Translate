@@ -111,6 +111,7 @@ $manager = $modx->getManager();
 $objectContainers = array(
     'trEntry',
     'trLanguage',
+    'trLanguageSet',
     'trMaintainer',
     'trNamespace',
     'trTopic',
