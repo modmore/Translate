@@ -78,6 +78,14 @@ if (!createObject('modSystemSetting', array(
     echo "Error creating translate.assets_url setting.\n";
 }
 
+if (!createObject('modSnippet', array(
+    'name' => 'trInitialize',
+    'static' => true,
+    'static_file' => $componentPath.'/core/components/translate/elements/snippets/trinitialize.snippet.php',
+), 'name', false)) {
+    echo "Error creating trInitialize snippet.\n";
+}
+
 /*if (!createObject('modAction', array(
     'namespace' => 'translate',
     'parent' => '0',
