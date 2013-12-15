@@ -134,7 +134,7 @@ header {
   width: 75%;
   max-width: 700px;
   min-height: 400px;
-  padding: 150px 0 100px;
+  padding: 90px 0 100px;
   margin: 0 auto;
   background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 55%);
   text-align: center; }
@@ -145,68 +145,69 @@ header {
     padding-bottom: 10px; }
   /* line 100, ../sass/screen.scss */
   #main h2 {
-    font-size: 30pt; }
-  /* line 103, ../sass/screen.scss */
+    font-size: 24pt;
+    padding-bottom: 10px; }
+  /* line 104, ../sass/screen.scss */
   #main input, #main textarea {
-    font-size: 25pt;
+    font-size: 18pt;
     padding: 15px;
     width: 100%;
-    height: 150px;
+    height: 108px;
     vertical-align: top;
-    background: transparent;
-    color: green;
+    background: rgba(255, 255, 255, 0.1);
+    color: #DDD;
     border: none;
     text-align: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
-    /* line 117, ../sass/screen.scss */
+    /* line 118, ../sass/screen.scss */
     #main input:focus, #main textarea:focus {
       outline-width: 0;
       color: #fff; }
-  /* line 123, ../sass/screen.scss */
+  /* line 124, ../sass/screen.scss */
   #main input {
     padding-bottom: 100px;
-    color: #dedede; }
+    color: #fff; }
 
-/* line 130, ../sass/screen.scss */
+/* line 131, ../sass/screen.scss */
 #thanks {
   width: 70%;
   margin: 0 auto; }
-  /* line 134, ../sass/screen.scss */
+  /* line 135, ../sass/screen.scss */
   #thanks h2 {
     margin: 0 0 15px; }
-  /* line 137, ../sass/screen.scss */
+  /* line 138, ../sass/screen.scss */
   #thanks p {
     font-size: 13pt;
     line-height: 18pt; }
-  /* line 142, ../sass/screen.scss */
+  /* line 143, ../sass/screen.scss */
   #thanks ul {
     margin: 30px 0; }
-    /* line 144, ../sass/screen.scss */
+    /* line 145, ../sass/screen.scss */
     #thanks ul li {
       font-size: 14pt;
       line-height: 18pt; }
-      /* line 147, ../sass/screen.scss */
+      /* line 148, ../sass/screen.scss */
       #thanks ul li a {
         color: #fff;
         text-decoration: none; }
-        /* line 151, ../sass/screen.scss */
+        /* line 152, ../sass/screen.scss */
         #thanks ul li a:hover {
           color: #ff9900; }
 
-/* line 159, ../sass/screen.scss */
+/* line 160, ../sass/screen.scss */
 footer {
   width: 50%;
   max-width: 450px;
-  margin: 0 auto;
+  margin: 15px auto 0;
   overflow: hidden;
   text-align: center; }
 
-/* line 168, ../sass/screen.scss */
+/* line 169, ../sass/screen.scss */
 .buttons {
   text-align: center; }
-  /* line 172, ../sass/screen.scss */
+  /* line 173, ../sass/screen.scss */
   .buttons a {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -220,9 +221,9 @@ footer {
     color: #1d4475;
     float: left;
     padding: 8px 10px; }
-    /* line 184, ../sass/screen.scss */
+    /* line 185, ../sass/screen.scss */
     .buttons a.review {
       float: right; }
-    /* line 187, ../sass/screen.scss */
+    /* line 188, ../sass/screen.scss */
     .buttons a.save {
       margin-left: 20%; }

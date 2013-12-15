@@ -32,6 +32,8 @@ class TranslateRestUpdateController extends TranslateRestController {
             if (!empty($translation)) {
                 $entry->set('translation', $translation);
                 $entry->set('translated', true);
+                $entry->set('translatedon', time());
+                $entry->set('translatedby', $this->user->get('id'));
             }
 
 

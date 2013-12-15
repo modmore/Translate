@@ -64,6 +64,7 @@
 </div>
 
 <script type="text/javascript" src="javascripts/libs/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="javascripts/libs/jquery.autogrowtextarea.js"></script>
 <script type="text/javascript" src="javascripts/libs/underscore-min.js"></script>
 <script type="text/javascript" src="javascripts/libs/backbone-min.js"></script>
 <script type="text/javascript" src="javascripts/translate.js"></script>
@@ -74,7 +75,7 @@
 
     <h2 class="source_value"><%= original %></h2>
 
-    <input type="text" class="translation" value="<%= translation %>">
+    <textarea class="translation"><%= translation %></textarea>
 
     <footer>
         <ul class="buttons">
@@ -85,7 +86,7 @@
                 <a href="javascript:void();" class="save">Save</a>
             </li>
             <li>
-                <a href="javascript:void();" class="review">Save with Review</a>
+                <a href="javascript:void();" class="review">Flag & Save</a>
             </li>
         </ul>
     </footer>

@@ -206,6 +206,7 @@ $(function () {
         showEntry: function (entry) {
             var view = new EntryView({model: entry});
             this.main.html(view.render().el);
+            this.main.find('textarea').autoGrow();
         },
 
         findNext: function () {
