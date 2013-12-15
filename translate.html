@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Translate Example</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/components/translate/stylesheets/screen.css" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript">
         // Google WebFonts
@@ -63,11 +63,11 @@
     </div>
 </div>
 
-<script type="text/javascript" src="javascripts/libs/jquery-2.0.3.min.js"></script>
-<script type="text/javascript" src="javascripts/libs/jquery.autogrowtextarea.js"></script>
-<script type="text/javascript" src="javascripts/libs/underscore-min.js"></script>
-<script type="text/javascript" src="javascripts/libs/backbone-min.js"></script>
-<script type="text/javascript" src="javascripts/translate.js"></script>
+<script type="text/javascript" src="assets/components/translate/javascripts/libs/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="assets/components/translate/javascripts/libs/jquery.autogrowtextarea.js"></script>
+<script type="text/javascript" src="assets/components/translate/javascripts/libs/underscore-min.js"></script>
+<script type="text/javascript" src="assets/components/translate/javascripts/libs/backbone-min.js"></script>
+<script type="text/javascript" src="assets/components/translate/javascripts/translate.js"></script>
 
 
 <script type="text/template" id="entry-template">
@@ -92,17 +92,6 @@
     </footer>
 </script>
 <script type="text/template" id="completed-template">
-    <div id="thanks">
-        <h2>You are awesome!</h2>
-        <p>There are no more <%= what %> in this lexicon. If you're up for a bit more, here are a few options:</p>
-
-        <ul>
-            <li class="modeTranslate"><a href="javascript:void();">Translate <%= translateable %> new or missing entries</a></li>
-            <li class="modeSkipped"><a href="javascript:void();">Translate <%= skipped %> skipped entries</a></li>
-            <li class="modeFlagged"><a href="javascript:void();">Review <%= flagged %> flagged entries</a></li>
-            <li><a href="../">Translate a different topic or package</a></li>
-        </ul>
-    </div>
 </script>
 </body>
 </html>
