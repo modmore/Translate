@@ -109,6 +109,11 @@ $manager = $modx->getManager();
 
 /* Create the tables */
 $objectContainers = array(
+    'trEntry',
+    'trLanguage',
+    'trMaintainer',
+    'trNamespace',
+    'trTopic',
 );
 echo "Creating tables...\n";
 
