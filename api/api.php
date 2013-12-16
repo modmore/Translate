@@ -12,8 +12,7 @@ if (!($Translate instanceof Translate)) {
     return 'Translate not found';
 }
 
-$debug = true;
-if ($debug) {
+if (API_DEBUG) {
     $modx->setLogLevel(xPDO::LOG_LEVEL_INFO);
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
