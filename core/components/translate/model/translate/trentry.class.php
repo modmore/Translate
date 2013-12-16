@@ -24,4 +24,34 @@
  */
 class trEntry extends xPDOSimpleObject
 {
+    /**
+     * @param $userId
+     * @return bool
+     */
+    public function addUserPoints($userId)
+    {
+        $key = $this->get('key');
+        $string = $this->get('translation');
+        $languageSet = $this->getOne('LanguageSet');
+        if ($languageSet instanceof trLanguageSet) {
+            $originals = $languageSet->getSourceValues();
+            if (isset($originals[$key])) $string = $originals[$key];
+        }
+
+        $words = str_word_count($string);
+        $points = ceil($words / 3);
+        if ($points > 15) $points = 15;
+
+        /** @var trPoint $point */
+        $point = $this->xpdo->newObject('trPoint');
+        $point->fromArray(array(
+            'user' => $userId,
+            'entry' => $this->get('id'),
+            'languageset' => $this->get('languageset'),
+            'points' => $points,
+            'awardedon' => time(),
+        ));
+
+        return $point->save();
+    }
 }

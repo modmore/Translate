@@ -133,6 +133,7 @@ $objects = array(
     'trLanguageSet',
     'trMaintainer',
     'trNamespace',
+    'trPoint',
     'trTopic',
 );
 

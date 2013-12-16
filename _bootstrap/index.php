@@ -129,6 +129,7 @@ $objectContainers = array(
     'trLanguageSet',
     'trMaintainer',
     'trNamespace',
+    'trPoint',
     'trTopic',
 );
 echo "Creating tables...\n";

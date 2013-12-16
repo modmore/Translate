@@ -22,75 +22,45 @@
  * @package translate
 */
 
-$xpdo_meta_map['trEntry']= array (
+$xpdo_meta_map['trPoint']= array (
   'package' => 'translate',
   'version' => '1.1',
-  'table' => 'translate_entry',
+  'table' => 'translate_point',
   'fields' => 
   array (
+    'user' => NULL,
+    'entry' => NULL,
     'languageset' => NULL,
-    'key' => '',
-    'translation' => '',
-    'flagged' => 0,
-    'skipped' => 0,
-    'translated' => 0,
-    'flaggedby' => NULL,
-    'skippedby' => NULL,
-    'translatedby' => NULL,
-    'flaggedon' => NULL,
-    'skippedon' => NULL,
-    'translatedon' => NULL,
+    'points' => NULL,
+    'awardedon' => NULL,
   ),
   'fieldMeta' => 
   array (
+    'user' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '11',
+      'phptype' => 'integer',
+      'null' => true,
+      'attributes' => 'unsigned',
+    ),
+    'entry' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '11',
+      'phptype' => 'integer',
+      'null' => true,
+      'attributes' => 'unsigned',
+    ),
     'languageset' => 
     array (
       'dbtype' => 'int',
       'precision' => '11',
       'phptype' => 'integer',
-      'null' => false,
+      'null' => true,
       'attributes' => 'unsigned',
     ),
-    'key' => 
-    array (
-      'dbtype' => 'varchar',
-      'precision' => '250',
-      'phptype' => 'string',
-      'null' => false,
-      'default' => '',
-    ),
-    'translation' => 
-    array (
-      'dbtype' => 'text',
-      'phptype' => 'string',
-      'null' => false,
-      'default' => '',
-    ),
-    'flagged' => 
-    array (
-      'dbtype' => 'tinyint',
-      'precision' => '1',
-      'phptype' => 'boolean',
-      'null' => false,
-      'default' => 0,
-    ),
-    'skipped' => 
-    array (
-      'dbtype' => 'tinyint',
-      'precision' => '1',
-      'phptype' => 'boolean',
-      'null' => false,
-      'default' => 0,
-    ),
-    'translated' => 
-    array (
-      'dbtype' => 'tinyint',
-      'precision' => '1',
-      'phptype' => 'boolean',
-      'null' => false,
-      'default' => 0,
-    ),
-    'flaggedby' => 
+    'points' => 
     array (
       'dbtype' => 'int',
       'precision' => '11',
@@ -98,39 +68,7 @@ $xpdo_meta_map['trEntry']= array (
       'null' => true,
       'attributes' => 'unsigned',
     ),
-    'skippedby' => 
-    array (
-      'dbtype' => 'int',
-      'precision' => '11',
-      'phptype' => 'integer',
-      'null' => true,
-      'attributes' => 'unsigned',
-    ),
-    'translatedby' => 
-    array (
-      'dbtype' => 'int',
-      'precision' => '11',
-      'phptype' => 'integer',
-      'null' => true,
-      'attributes' => 'unsigned',
-    ),
-    'flaggedon' => 
-    array (
-      'dbtype' => 'int',
-      'precision' => '15',
-      'phptype' => 'integer',
-      'null' => true,
-      'attributes' => 'unsigned',
-    ),
-    'skippedon' => 
-    array (
-      'dbtype' => 'int',
-      'precision' => '15',
-      'phptype' => 'integer',
-      'null' => true,
-      'attributes' => 'unsigned',
-    ),
-    'translatedon' => 
+    'awardedon' => 
     array (
       'dbtype' => 'int',
       'precision' => '15',
@@ -141,6 +79,22 @@ $xpdo_meta_map['trEntry']= array (
   ),
   'aggregates' => 
   array (
+    'User' => 
+    array (
+      'class' => 'modUser',
+      'cardinality' => 'one',
+      'foreign' => 'id',
+      'local' => 'user',
+      'owner' => 'foreign',
+    ),
+    'Entry' => 
+    array (
+      'class' => 'trEntry',
+      'cardinality' => 'one',
+      'foreign' => 'id',
+      'local' => 'entry',
+      'owner' => 'foreign',
+    ),
     'LanguageSet' => 
     array (
       'class' => 'trLanguageSet',

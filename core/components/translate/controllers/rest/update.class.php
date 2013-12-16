@@ -30,10 +30,17 @@ class TranslateRestUpdateController extends TranslateRestController {
         if ($entry instanceof trEntry) {
             $translation = $this->getRequest('translation');
             if (!empty($translation)) {
+                $entryArray = $entry->toArray();
+
                 $entry->set('translation', $translation);
                 $entry->set('translated', true);
                 $entry->set('translatedon', time());
                 $entry->set('translatedby', $this->user->get('id'));
+
+                // Add points to the user
+                if (empty($entryArray['translation']) || $entryArray['translatedby'] != $this->user->get('id')) {
+                    $entry->addUserPoints($this->user->get('id'));
+                }
             }
 
 
@@ -63,8 +70,15 @@ class TranslateRestUpdateController extends TranslateRestController {
             }
 
 
-            $entry->save();
-            return $entry->toJSON();
+            if ($entry->save()) {
+                $a = $entry->toArray();
+                $a['points'] = $this->translate->getPointsTotal(array('user' => $this->user->get('id')));
+                return $this->modx->toJSON($a);
+            }
+            return $this->modx->toJSON(array(
+                'error' => true,
+                'message' => 'Error saving entry'
+            ));
         }
 
         return $this->modx->toJSON(array(

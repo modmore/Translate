@@ -108,6 +108,15 @@ $(function () {
                     flagged: flagged,
                     translated: true,
                     skipped: false
+                },{
+                    success: function(model, resp) {
+                        if (resp.error && resp.message) {
+                            alert('Oops, something went wrong saving your translation for ' + model.attributes.key + ': ' + resp.message);
+                        }
+                        else if (resp.points) {
+                            model.trigger('update_points', resp.points);
+                        }
+                    }
                 });
             }
         },
@@ -131,11 +140,9 @@ $(function () {
         updateOnEnter: function (e) {
             if (e.keyCode == 13) {
                 if (this.input.val().length) {
-                    console.log('saveEntry');
                     this.saveEntry();
                 }
                 else {
-                    console.log('skipEntry');
                     this.skipEntry();
                 }
             }
@@ -157,20 +164,17 @@ $(function () {
 
         mode: 'translate',
 
-        // Delegated events for creating new items, and clearing completed ones.
-        events: {
-            //"click .modeTranslate": "this.setModeTranslate",
-            //"click .modeSkipped": "this.setModeSkipped",
-            //"click .modeFlagged": "this.setModeFlagged"
+        events: {},
+
+        updatePoints: function (credits) {
+            this.stats.credits.text(credits);
         },
 
-        // At initialization we bind to the relevant events on the `Entries`
-        // collection, when items are added or changed. Kick things off by
-        // loading any preexisting todos that might be saved in *localStorage*.
         initialize: function () {
             this.listenTo(Entries, 'change', this.findNext);
             this.listenTo(Entries, 'reset', this.findNext);
             this.listenTo(Entries, 'all', this.render);
+            this.listenTo(Entries, 'update_points', this.updatePoints);
 
             this.main = $('#main');
 
@@ -193,13 +197,11 @@ $(function () {
             var translated = Entries.translated().length,
                 total = Entries.length,
                 skipped = Entries.skipped().length,
-                credits = 523,
                 percentage = ((translated / total) * 100).toFixed(0) + '%';
 
             this.stats.translated.text(translated);
             this.stats.total.text(total);
             this.stats.skipped.text(skipped);
-            this.stats.credits.text(credits);
             this.stats.percentage.css({width: percentage});
         },
 
@@ -260,25 +262,24 @@ $(function () {
                 if (flagged < 1) that.main.find('.modeFlagged').hide();
 
                 that.main.find('.modeSkipped').on('click', _.bind(that.setModeSkipped, that));
+                that.main.find('.modeTranslate').on('click', _.bind(that.setModeTranslate, that));
+                that.main.find('.modeFlagged').on('click', _.bind(that.setModeFlagged, that));
 
                 that.main.fadeIn();
             });
         },
 
         setModeTranslate: function() {
-            console.log('setting mode to translate');
             this.mode = 'translate';
             this.findNext();
         },
 
         setModeSkipped: function() {
-            console.log('setting mode to skipped');
             this.mode = 'skipped';
             this.findNext();
         },
 
         setModeFlagged: function() {
-            console.log('setting mode to flagged');
             this.mode = 'flagged';
             this.findNext();
         }

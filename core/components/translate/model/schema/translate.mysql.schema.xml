@@ -18,8 +18,19 @@
         <field key="skippedon" dbtype="int" precision="15" phptype="integer" null="true" attributes="unsigned" />
         <field key="translatedon" dbtype="int" precision="15" phptype="integer" null="true" attributes="unsigned" />
 
-        <aggregate alias="Namespace" class="trNamespace" cardinality="one" foreign="id" local="namespace" owner="foreign" />
-        <aggregate alias="Topic" class="trTopic" cardinality="one" foreign="id" local="topic" owner="foreign" />
+        <aggregate alias="LanguageSet" class="trLanguageSet" cardinality="one" foreign="id" local="languageset" owner="foreign" />
+    </object>
+
+    <object class="trPoint" table="translate_point">
+        <field key="user" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
+        <field key="entry" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
+        <field key="languageset" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
+        <field key="points" dbtype="int" precision="11" phptype="integer" null="true" attributes="unsigned" />
+        <field key="awardedon" dbtype="int" precision="15" phptype="integer" null="true" attributes="unsigned" />
+
+        <aggregate alias="User" class="modUser" cardinality="one" foreign="id" local="user" owner="foreign" />
+        <aggregate alias="Entry" class="trEntry" cardinality="one" foreign="id" local="entry" owner="foreign" />
+        <aggregate alias="LanguageSet" class="trLanguageSet" cardinality="one" foreign="id" local="languageset" owner="foreign" />
     </object>
 
     <object class="trNamespace" table="translate_namespace">

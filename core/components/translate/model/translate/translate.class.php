@@ -156,5 +156,22 @@ class Translate {
         }
     }
 
+    /**
+     * @param array $where
+     * @return int
+     */
+    public function getPointsTotal(array $where = array())
+    {
+        $c = $this->modx->newQuery('trPoint');
+        $c->select('SUM(points) as total');
+        $c->where($where);
+        if ($c->prepare() && $c->stmt->execute())
+        {
+            $num = (int)$c->stmt->fetchColumn();
+            return $num;
+        }
+        return 0;
+    }
+
 }
 

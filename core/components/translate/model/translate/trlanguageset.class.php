@@ -91,6 +91,9 @@ class trLanguageSet extends xPDOSimpleObject
         return false;
     }
 
+    /**
+     * @return array
+     */
     private function getExistingValues()
     {
         $ns = $this->getOne('Namespace');
